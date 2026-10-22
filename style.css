@@ -1,0 +1,60 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0; min-height: 100vh;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #fff; background: #1b1233;
+  transition: background 1.2s;
+}
+main { max-width: 980px; margin: 0 auto; padding: 16px; text-align: center; }
+h1 { margin: 8px 0 12px; font-size: clamp(1.4rem, 4vw, 2.2rem); }
+
+#stage {
+  position: relative; min-height: 420px; border-radius: 24px; padding: 16px;
+  background: rgba(255,255,255,.08); overflow: hidden;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+#year { font-size: clamp(1.6rem, 6vw, 3rem); font-weight: 800; letter-spacing: 1px; min-height: 1.3em; }
+#caption { font-size: clamp(1rem, 2.6vw, 1.3rem); min-height: 3.2em; padding: 8px 12px; }
+
+#cast {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end;
+  gap: 8px; min-height: 200px; padding-bottom: 8px;
+}
+.pal { width: 120px; display: flex; flex-direction: column; align-items: center; transition: transform .6s, opacity .6s, filter .6s; }
+.pal svg { width: 100%; height: auto; overflow: visible; animation: float 3s ease-in-out infinite; }
+.pal b { font-size: .8rem; margin-top: 2px; }
+.pal.old { transform: scale(.6); opacity: .55; filter: saturate(.5); margin: -18px -14px; }
+.pal.new { animation: pop .8s cubic-bezier(.3,1.8,.5,1); }
+.pal.big { width: 150px; }
+.bubble {
+  background: #fff; color: #2b1d4f; border-radius: 14px; padding: 4px 10px; font-size: .8rem; margin-bottom: 4px;
+  position: relative;
+}
+.bubble::after { content: ""; position: absolute; left: 50%; bottom: -6px; margin-left: -6px;
+  border: 6px solid transparent; border-bottom: 0; border-top-color: #fff; }
+
+@keyframes pop { 0% { transform: scale(0) rotate(-20deg); } 100% { transform: scale(1) rotate(0); } }
+@keyframes float { 50% { transform: translateY(-8px); } }
+@keyframes blink { 0%, 92%, 100% { transform: scaleY(1); } 96% { transform: scaleY(.1); } }
+.eye { transform-box: fill-box; transform-origin: center; animation: blink 4s infinite; }
+
+#timeline { display: flex; justify-content: center; gap: 8px; margin: 14px 0; flex-wrap: wrap; }
+#timeline button {
+  border: 2px solid rgba(255,255,255,.4); background: transparent; color: #fff;
+  border-radius: 999px; padding: 6px 12px; font-size: .85rem; cursor: pointer;
+}
+#timeline button.on { background: #fff; color: #1b1233; font-weight: 700; }
+
+#controls button {
+  font-size: 1rem; border: 0; border-radius: 12px; padding: 10px 18px; margin: 0 4px;
+  background: #8e5cff; color: #fff; cursor: pointer;
+}
+button:focus-visible { outline: 3px solid #ffd54a; outline-offset: 2px; }
+
+.confetti { position: absolute; top: -12px; width: 10px; height: 14px; animation: fall linear forwards; pointer-events: none; }
+@keyframes fall { to { transform: translateY(520px) rotate(720deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .pal svg, .eye, .pal.new, .confetti { animation: none; }
+}
+@media (max-width: 600px) { .pal { width: 90px; } .pal.big { width: 105px; } #stage { min-height: 460px; } }
