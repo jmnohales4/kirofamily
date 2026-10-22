@@ -3,26 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>La familia Kiro crece</title>
-<meta name="description" content="Animación corta: de CodeWhisperer a Amazon Q Developer, Kiro IDE, Kiro CLI y toda la familia Kiro.">
+<title>La evolución de Kiro</title>
+<meta name="description" content="Animación con música: un pequeño héroe, CW, come una baya mágica y evoluciona a Amazon Q Developer y luego a Kiro, hasta formar toda la familia Kiro.">
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 <main>
-  <h1>La familia Kiro crece</h1>
+  <div id="wrap">
+    <canvas id="c" width="960" height="540" role="img"
+      aria-label="Animación: el héroe CW camina, come una baya mágica y se transforma en Amazon Q Developer, después en Kiro, y al final llega toda la familia Kiro."></canvas>
 
-  <section id="stage" aria-live="polite">
-    <div id="year"></div>
-    <div id="cast"></div>
-    <div id="caption"></div>
-  </section>
+    <div id="start" class="overlay">
+      <h1>La evolución de Kiro</h1>
+      <p>De CodeWhisperer a toda la familia, como un héroe de anime.</p>
+      <button id="go">▶ Empezar (con música)</button>
+      <small>Sube el volumen. La música se genera en tu navegador.</small>
+    </div>
 
-  <nav id="timeline" aria-label="Línea de tiempo"></nav>
+    <div id="end" class="overlay" hidden>
+      <button id="replay">↻ Ver otra vez</button>
+    </div>
+  </div>
+
+  <p id="caption" aria-live="polite">&nbsp;</p>
 
   <div id="controls">
-    <button id="prev" aria-label="Anterior">⏮</button>
-    <button id="play" aria-label="Pausa">⏸ Pausa</button>
-    <button id="next" aria-label="Siguiente">⏭</button>
+    <button id="pause">⏸ Pausa</button>
+    <button id="mute">🔊 Música</button>
   </div>
 </main>
 <script src="./app.js"></script>
